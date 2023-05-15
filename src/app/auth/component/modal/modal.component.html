@@ -1,0 +1,48 @@
+<p (click)="openModal(template)" class="textButoon">Cadastre-se </p>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Cadastro do Usuário</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="userForm"
+      (ngSubmit)="onSubmit(userForm.value, modalRef?.hide)">
+
+      <mat-form-field>
+        <mat-label >Nome</mat-label>
+        <input  matInput formControlName="name" >
+        <mat-error>O campo Nome é obrigatório</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>CPF</mat-label>
+        <input matInput formControlName="cpf">
+        <mat-error>O campo CPF é obrigatório e deve ter o formato 999.999.999-99</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="emial">
+        <mat-error>Email é obrigatório</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Senha</mat-label>
+        <input matInput formControlName="password">
+        <mat-error>Senha é obrigatório</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Telefone</mat-label>
+        <input matInput formControlName="phone">
+        <mat-error>O campo Telefone é obrigatório e deve ter o formato (99) 9999-9999 ou (99) 99999-9999</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Salvar</button>
+      <button mat-raised-button color="red" aria-label="Close" (click)="modalRef?.hide()">Cancelar</button>
+    </form>
+  </div>
+</ng-template>

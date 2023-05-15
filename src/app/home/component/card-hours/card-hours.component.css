@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border: 1px solid #a1c2e9;
+  background-color: aqua;
+  /* box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.41); */
+}
+
+.card{
+  width: 200px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #a1c2e9;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.41);
+
+  /* border: 1px solid #6ab8c8;
+  border-top: 1px solid #a3d1da;
+  border-left: 1px solid #a3d1da;
+  border-radius: 20px;
+  box-shadow: 8px -1px 13px 3px rgba(117,117,117,0.39); */
+}

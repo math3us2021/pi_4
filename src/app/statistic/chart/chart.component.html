@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="img">
+    <img src="assets/image/logo_pet.png" alt="Logo" class="imgSize" />
+  </div>
+
+  <div class="header">
+    <h1><strong>DASHBOARD</strong></h1>
+    <button class="btn btn-warning" (click)="getFood()">Atualizar dados</button>
+  </div>
+
+  <div class="filter">
+    <mat-form-field appearance="fill">
+      <mat-label>Espécie</mat-label>
+      <mat-select
+        [(value)]="selected"
+        (selectionChange)="onSelectionChange($event.value)"
+      >
+        <mat-option value="pets">Pets</mat-option>
+        <mat-option value="dog">Cachorro</mat-option>
+        <mat-option value="cat">Gato</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- <div *ngIf="selected === 'dog' || selected === 'cat'"> -->
+    <div *ngIf="filterDog">
+      <mat-form-field appearance="fill">
+        <mat-label>Consulta por Pet</mat-label>
+        <mat-select [(ngModel)]="selectedFood">
+          <mat-option *ngFor="let dog of dogs" [value]="dog.id">
+            {{ dog.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="filterCat">
+      <mat-form-field appearance="fill">
+        <mat-label>Consulta por Pet</mat-label>
+        <mat-select [(ngModel)]="selectedFood">
+          <mat-option *ngFor="let cat of cats" [value]="cat.id">
+            {{ cat.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="selected === 'dog' || selected === 'cat'">
+      <input
+        type="text"
+        placeholder="Daterangepicker"
+        class="form-control datepicker"
+        [bsConfig]="bsConfig"
+        bsDaterangepicker
+      />
+    </div>
+  </div>
+</div>
+
+<app-card-total></app-card-total>
+
+<div class="container">
+  <!-- <app-graphic *ngIf="char" [sucess]="suces" [error]="erro"></app-graphic> -->
+  <!-- <app-graphic [sucess]="suces" [error]="erro"></app-graphic> -->
+</div>
