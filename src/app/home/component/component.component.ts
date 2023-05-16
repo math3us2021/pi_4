@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalComponent } from './modal/modal.component';
 
 @Component({
   selector: 'app-component',
@@ -7,11 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./component.component.sass']
 })
 export class HomeComponent {
+  @ViewChild('modalCard') modalCard!: ModalComponent;
+
   nameCard = {
-    text: 'Detalhes do Pet',
+    text: 'Cadastro do Pet',
     text2: 'Recomendações',
     text3: 'Horários de Alimentação',
-    text4: 'Programar Alimentador',
+    text4: 'Estatísticas para Administrador',
   };
 
   constructor(
@@ -20,7 +23,7 @@ export class HomeComponent {
 
 
   description(){
-    this.router.navigate(['/description']);
+    this.modalCard.openModal();
   }
 
   registerPet(){
@@ -29,5 +32,9 @@ export class HomeComponent {
 
   feeder(){
     this.router.navigate(['/feeder']);
+  }
+
+  statistics(){
+    this.router.navigate(['/statistics']);
   }
 }

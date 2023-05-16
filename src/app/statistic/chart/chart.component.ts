@@ -1,13 +1,11 @@
-import { Component, Output, ViewChild } from '@angular/core';
-import { Chart, registerables } from 'chart.js';
+import { Component, Output} from '@angular/core';
 import { StatisticService } from '../services/services.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { Food, Pet, User } from '../model/statistic';
+import { Food, Pet } from '../model/statistic';
 
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/store/app.reduce';
 import {FormGroup, FormControl} from '@angular/forms';
-import { MatDatepicker } from '@angular/material/datepicker';
 interface Foods {
   value: string;
   viewValue: string;
@@ -71,8 +69,7 @@ export class ChartComponent {
   }
 
   onSelectionChange(event: string) {
-    console.log(event);
-    console.log(this.selected);
+
     switch (this.selected) {
       case 'dog':
         this.getDogs();

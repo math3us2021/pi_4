@@ -10,17 +10,16 @@ export interface User {
 export interface Pet {
   id: string;
   name: string;
-  age: string;
+  type: string;
   breed: string;
-  owner: string;
-  description?: {
-    width: string;
-    height: string;
-    weight: string;
+  gender: string;
+  birthDate: string;
+  user?: User;
+  weight?: number;
   }
 
 
-}
+
 
 
 //

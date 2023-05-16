@@ -1,69 +1,35 @@
 <div class="container">
   <div class="cont">
-
     <div class="img">
       <img src="assets/image/logo_pet.png" alt="Logo" class="input" />
     </div>
 
-    <div>
-      <form [formGroup]="formulario">
-        <div class="container">
-          <mat-form-field class="example-full-width input">
-            <mat-label>Email</mat-label>
-            <input
-              type="email"
-              matInput
-              [formControl]="emailFormControl"
-              [errorStateMatcher]="matcher"
-              placeholder="Ex. pat@example.com"
-            />
-            <mat-hint>Entre com seu email</mat-hint>
-            <mat-error
-              *ngIf="
-                emailFormControl.hasError('email') &&
-                !emailFormControl.hasError('required')
-              "
-            >
-              Entre com um email valido
-            </mat-error>
-            <mat-error *ngIf="emailFormControl.hasError('required')">
-              Email é <strong>obrigatório</strong>
-            </mat-error>
-          </mat-form-field>
 
-          <mat-form-field class="example-full-width input">
-            <mat-label>Senha</mat-label>
-            <input
-              type="password"
-              matInput
-              [formControl]="passwordFormControl"
-              [errorStateMatcher]="matcher"
-              placeholder="Ex. pat@example.com"
-            />
-            <mat-hint>Entre com sua senha</mat-hint>
-            <mat-error
-              *ngIf="
-                passwordFormControl.hasError('password') &&
-                !passwordFormControl.hasError('required')
-              "
-            >
-              Entre com um email valido
-            </mat-error>
-            <mat-error *ngIf="passwordFormControl.hasError('required')">
-              Senha é <strong>obrigatória</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
+    <div >
+      <form [formGroup]="userForm"
+        (ngSubmit)="onSubmit(userForm.value)">
+        <div class="modal-body">
+
+        <mat-form-field class="sizeInput" >
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+          <mat-error>Email é obrigatório</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="sizeInput" >
+          <mat-label>Senha</mat-label>
+          <input matInput formControlName="password">
+          <mat-error>Senha é obrigatório</mat-error>
+        </mat-form-field>
+
+
+
+        <button mat-raised-button color="primary" type="submit" class="sizeInput" >Salvar</button>
+      </div>
+
       </form>
-      <button mat-raised-button color="accent" [disabled]="!formulario.valid"
-        (click)="login()"
-      >
-        Entrar
-      </button>
-      <app-modal></app-modal>
-      <!-- <div class="register">
-      </div> -->
     </div>
-
+    <app-modal></app-modal>
   </div>
+
 </div>

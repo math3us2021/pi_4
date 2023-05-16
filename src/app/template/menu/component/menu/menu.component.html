@@ -1,33 +1,21 @@
 <div class="header">
-  <div>
-    <img class="logo" src="assets/image/petz.jpg" alt="logo" (click)="toggleHome()">
-  </div>
-  <div class="icon">
-    <div class="icon-display">
-      <i
-        class="po-icon po-icon-home color icon-size po-m-1"
-        (click)="toggleHome()"
-        [class.active]="aba == 'home'"
-        ></i>
-    </div>
-    <div class="icon-display">
-      <i
-        class="po-icon po-icon-cart color icon-size po-m-1"
-        (click)="toggleProduct()"
-        [class.active]=" aba === 'product'"
-        ></i>
-    </div>
-    <div class="icon-display">
-      <i
-        class="po-icon po-icon-user-add color icon-size po-m-1"
-        [class.active]=" aba === 'owner'"
-        (click)="toggleOwner()"
-        ></i>
-    </div>
-    <div class="icon-display">
-      <i class="po-icon po-icon-exit color icon-exit po-m-1" (click)="toggleExit()"></i>
-    </div>
-  </div>
 
+  <!-- <div class="icon"> -->
 
+    <div >
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"
+      (click)="toggleHome()" class="color" color="warn"
+      ></mat-icon>
+      <mat-icon aria-hidden="false" aria-label="Example pets icon" fontIcon="pets"
+      (click)="toggleHome()" color="warn" class="color"
+      ></mat-icon>
+    </div>
+
+    <div >
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="login"
+      (click)="toggleExit()" class="color" color="primary"
+      ></mat-icon>
+    </div>
+
+  <!-- </div> -->
 </div>

@@ -16,7 +16,6 @@ import { MenuModule } from './template/menu/menu.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 
-
 @NgModule({
   declarations: [
     AppComponent
@@ -31,6 +30,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     MenuModule,
     ModalModule.forRoot(),
+
 
   ],
   providers: [],

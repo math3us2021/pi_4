@@ -1,0 +1,79 @@
+<!-- <p (click)="openModal(template)" class="textButoon">Cadastre-se </p> -->
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Cadastrar Pet</h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form
+      [formGroup]="userForm"
+      (ngSubmit)="onSubmit(userForm.value, modalRef?.hide)"
+    >
+      <mat-form-field class="sizeInput">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error>O campo Nome é obrigatório</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Espécie</mat-label>
+        <select matNativeControl required formControlName="type">
+          <option value="dog">Cachorro</option>
+          <option value="cat">Gato</option>
+        </select>
+      </mat-form-field>
+
+      <mat-form-field class="teste">
+        <mat-label>Raça</mat-label>
+        <input matInput formControlName="breed" />
+        <mat-error>O campo é obrigatório</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Peso</mat-label>
+        <input matInput formControlName="weight" type="number" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="teste">
+        <mat-label>Sexo</mat-label>
+        <select matNativeControl required formControlName="gender">
+          <option value="male">Macho</option>
+          <option value="female">Fêmea</option>
+        </select>
+      </mat-form-field>
+
+      <div class="col-xs-12 col-12 col-md-4 form-group mb-3">
+        <input
+          type="text"
+          formControlName="birthDate"
+          placeholder="Datepicker"
+          class="form-control datepicker"
+          bsDatepicker
+          [bsConfig]="bsConfig"
+        />
+      </div>
+
+      <button mat-raised-button color="primary" type="submit">Salvar</button>
+      <button
+        mat-raised-button
+        color="red"
+        aria-label="Close"
+        (click)="modalRef?.hide()"
+      >
+        Cancelar
+      </button>
+    </form>
+  </div>
+</ng-template>
+
+<!-- <alert type="info" *ngIf="!userForm.valid">
+  <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+</alert> -->

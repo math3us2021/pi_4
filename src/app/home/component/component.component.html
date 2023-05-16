@@ -1,11 +1,16 @@
+<div class="container">
 
+  <div class="img">
+    <img src="assets/image/logo_pet.png" alt="Logo" class="input" />
+  </div>
 
-<div class="containerCard">
-<app-card [text]="nameCard.text" (click)="description()"></app-card>
-<app-card [text]="nameCard.text2" ></app-card>
-<app-card [text]="nameCard.text3" (click)="registerPet()"></app-card>
-</div>
+  <div class="containerCard">
+    <app-card [text]="nameCard.text" (click)="description()"></app-card>
+    <app-card [text]="nameCard.text2"></app-card>
+    <app-card [text]="nameCard.text3" (click)="registerPet()"></app-card>
+    <app-card [text]="nameCard.text4" (click)="statistics()"></app-card>
+  </div>
 
-<div>
   <app-card-hours></app-card-hours>
+  <app-modal #modalCard></app-modal>
 </div>

@@ -18,44 +18,65 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./auth.component.sass']
 })
 export class AuthComponent {
-  formulario!: FormGroup;
-  mySubscription: Subscription | undefined;
+//   formulario!: FormGroup;
+//   mySubscription: Subscription | undefined;
 
-  email1(event: string) {
-    // console.log("🚀 ~ file: auth.component.ts:18 ~ AuthComponent ~ email1 ~ event:", event)
-    // this.email = event
 
-  }
+//   email = new FormControl('', [Validators.required, Validators.email]);
+//   password = new FormControl('', [Validators.required, Validators.email]);
 
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  passwordFormControl = new FormControl('', [Validators.required, Validators.email]);
+//   matcher = new MyErrorStateMatcher();
 
-  matcher = new MyErrorStateMatcher();
+//   constructor(
+//     private formBuilder: FormBuilder,
+//     private authService: AuthService,
+//     private router: Router,
+//   ) {
+//     // console.log(this.formulario.value)
+//   }
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private router: Router,
+//   ngOnInit(): void {
+//     this.formulario = this.formBuilder.group({
+//       email: [''],
+//       password: ['']
+//     });
+//     console.log(this.formulario, this.formulario.value, this.formulario.value.email)
+//   }
+
+//   onEmailChange() {
+//     // this.authService.showMenu(this.email)
+//   }
+
+//   login(data: any){
+//     console.log("🚀 ~ file: auth.component.ts:58 ~ AuthComponent ~ login ~ data:", data,
+//     this.formulario.value.email, this.formulario.value.password)
+//     // this.router.navigate(['/home']);
+//   }
+// onSubmit(data: any){
+//   console.log("🚀 ~ file: auth.component.ts:62 ~ AuthComponent ~ onSubmit ~ data", data)
+//   // this.router.navigate(['/home']);
+// }
+
+userForm!: FormGroup;
+
+constructor(
+  private fb: FormBuilder,
+  private authServes : AuthService
   ) {
-    // console.log(this.formulario.value)
-  }
+  this.createForm();
+}
 
-  ngOnInit(): void {
-    this.formulario = this.formBuilder.group({
-      nome: [''],
-      username: [''],
-      email: ['matheus'],
-      password: ['']
-    });
-    console.log(this.formulario, this.formulario.value, this.formulario.value.email)
-  }
 
-  onEmailChange() {
-    // this.authService.showMenu(this.email)
-  }
 
-  login(){
-    this.router.navigate(['/home']);
-  }
+createForm() {
+  this.userForm = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
+  });
+}
+
+onSubmit(data: any) {
+  this.authServes.showMenu(data.email, data.password)
+}
 
 }

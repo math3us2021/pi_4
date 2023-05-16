@@ -39,9 +39,9 @@ export class AuthService implements OnDestroy {
     return EMPTY; //Observable vazio
   }
 
-  getCep(cep: string): Observable<any> {
-    return this.http.get<any>(`https://viacep.com.br/ws/${cep}/json/`);
+  showMenu(email: string, password: string){
+    this.menuEmitter.emit(true);
+    this.router.navigate(['/home']);
   }
-
 
 }

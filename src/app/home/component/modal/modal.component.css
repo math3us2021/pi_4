@@ -1,0 +1,24 @@
+.textButoon{
+  cursor: pointer;
+  color: #3f4ddf;
+  margin-top: 30px;
+}
+.teste{
+  margin-left: 30px;
+}
+
+.sizeInput{
+  width: 450px;
+}
+
+.datepicker{
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: none;
+  height: 55px;
+  border-bottom: 1px solid #707071;
+  cursor: pointer;
+}
+.datepicker:hover {
+  background-color: #eceded;
+}

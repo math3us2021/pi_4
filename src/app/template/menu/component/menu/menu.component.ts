@@ -15,11 +15,6 @@ export class MenuComponent {
     private router: Router,
   ) {}
 
-  toggleProduct() {
-    this.aba = 'product';
-    this.router.navigate(['/storePet']);
-  }
-
   toggleExit() {
     this.authService.menuEmitter.emit(false);
     this.router.navigate(['/']);
@@ -27,12 +22,7 @@ export class MenuComponent {
   }
 
   toggleHome() {
-    this.aba = 'home';
     this.router.navigate(['/home']);
   }
 
-  toggleOwner() {
-    this.aba = 'owner';
-    this.router.navigate(['/owner']);
-  }
 }

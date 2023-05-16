@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from './component/menu/menu.component';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -9,7 +10,8 @@ import { MenuComponent } from './component/menu/menu.component';
     MenuComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatIconModule
   ],
   exports: [
     MenuComponent

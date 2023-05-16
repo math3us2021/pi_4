@@ -1,7 +1,7 @@
-<app-menu></app-menu>
+<app-menu
+*ngIf="menu"
+></app-menu>
 
-<button (click)="statistics()">Statistics</button>
-<button routerLink="/">Home</button>
 <router-outlet></router-outlet>
 
 

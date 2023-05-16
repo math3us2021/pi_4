@@ -33,7 +33,8 @@ export class ModalComponent {
       cpf: ['', [Validators.required,
         // Validators.pattern(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/)
       ]],
-      rg: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]],
       phone: ['', [Validators.required]]
     });
   }

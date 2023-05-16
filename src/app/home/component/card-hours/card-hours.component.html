@@ -1,10 +1,15 @@
-<div class="containter">
-  <div class="card">
+<div class="container">
+  <div>
+    <h3>Registro do dia:</h3>
+    <h4>{{ dateCurrent | date: 'dd/MM/YYYY' }}</h4>
+  </div>
+  <div class="card" *ngFor="let date of dates">
     <div class="hour">
-      <p>{{ date | date }}</p>
+      <p>{{ date.hourStart }}</p>
+      <p>{{ date.quantityGrams }}</p>
     </div>
     <div>
-      <mat-checkbox class="example-margin">Alimentação do dia</mat-checkbox>
+      <mat-checkbox class="example-margin" [(ngModel)]="checked">Alimentação do dia</mat-checkbox>
     </div>
   </div>
 </div>

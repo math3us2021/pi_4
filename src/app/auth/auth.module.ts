@@ -6,9 +6,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthComponent } from './component/auth/auth.component';
 import { ModalComponent } from './component/modal/modal.component';
 
-
 import { ModalModule } from 'ngx-bootstrap/modal'
-import { AlertModule } from 'ngx-bootstrap/alert';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 
@@ -26,7 +24,6 @@ import {MatButtonModule} from '@angular/material/button';
     MatInputModule,
     MatButtonModule,
     ModalModule.forRoot(),
-    AlertModule.forRoot(),
 
 
   ],
