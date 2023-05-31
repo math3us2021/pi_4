@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { error, sucess } from "./app.actions";
+import { error, sucess, setId } from "./app.actions";
 
 export interface IProduct {
     id: number;
@@ -12,12 +12,14 @@ export interface IAppState { /// definira interface para o estado da aplicação
     sucess: number;
     error: number
     products: IProduct[];
+    consultpetId: string;
 }
 
 export const INITIAL_STATE: IAppState = { // define o estado inicial da aplicação
     sucess: 0,
     error: 0,
-    products: []
+    products: [],
+    consultpetId: ''
 }
 
 export const appReducer = createReducer(
@@ -28,5 +30,8 @@ export const appReducer = createReducer(
     ),
     on(
         error, (state, {payload}) => ({ ...state, error: payload})
+    ),
+    on(
+      setId, (state, {value}) => ({ ...state, consultpetId: value})
     )
 )

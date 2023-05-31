@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalComponent } from './modal/modal.component';
+import { ReminderHoursComponent } from './reminder-hours/reminder-hours.component';
 
 @Component({
   selector: 'app-component',
@@ -9,6 +10,7 @@ import { ModalComponent } from './modal/modal.component';
 })
 export class HomeComponent {
   @ViewChild('modalCard') modalCard!: ModalComponent;
+  @ViewChild('modalReminder') modalReminder!: ReminderHoursComponent;
 
   nameCard = {
     text: 'Cadastro do Pet',
@@ -26,8 +28,8 @@ export class HomeComponent {
     this.modalCard.openModal();
   }
 
-  registerPet(){
-    this.router.navigate(['/product']);
+  register(){
+    this.modalReminder.openModal();
   }
 
   feeder(){

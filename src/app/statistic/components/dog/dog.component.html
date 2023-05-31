@@ -1,0 +1,95 @@
+<div>
+
+  <div
+  class="display card-body">
+    <h2>CACHORROS | titulo personalizado</h2>
+
+    <div class="card">
+      <!-- <button (click)="updateBarraDog()">Atualizei</button> -->
+
+      <div>
+        <mat-card>
+          <div class="card-header">
+            <mat-card-title>Quantidade de ração</mat-card-title>
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="pets"
+            ></mat-icon>
+          </div>
+          <mat-card-subtitle>Estatistica Descritiva</mat-card-subtitle>
+          <mat-card-content>
+            <p>Média : {{ meanResponse }}</p>
+            <p>Mediana : {{ medianResponse }}</p>
+            <p>Moda : {{ modeResponse }}</p>
+            <p>Desvio Padrão : {{ stdeviationResponse }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div>
+        <mat-card>
+          <div class="card-header">
+            <mat-card-title>Peso dos Cachorros</mat-card-title>
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="pets"
+            ></mat-icon>
+          </div>
+          <mat-card-subtitle>Estatistica Descritiva</mat-card-subtitle>
+
+          <mat-card-content>
+            <p>Média : {{ staticFood.meanResponse }}</p>
+            <p>Mediana : {{ staticFood.modeResponse }}</p>
+            <p>Moda : {{ staticFood.medianResponse }}</p>
+            <p>Desvio Padrão : {{ staticFood.stdeviationResponse }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div>
+        <mat-card>
+          <div class="card-header">
+            <mat-card-title>TOTAL DE CACHORROS</mat-card-title>
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="pets"
+            ></mat-icon>
+          </div>
+          <mat-card-content>
+            <canvas id="bar">
+              {{ chartBarra }}
+            </canvas>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <mat-card-content>
+      <canvas id="lineDog">
+        {{ chartLineDog }}
+      </canvas>
+    </mat-card-content>
+
+    <mat-card-content>
+      <canvas id="lineDogWeight">
+        {{ chartLineDogWeight }}
+      </canvas>
+    </mat-card-content>
+  
+  </div>
+
+
+
+</div>
+<p>Equação do 1° grau</p>
+<h3>Coeficiente Peso   (X1): {{ regressionResult.regressionX1 }}</h3>
+<h3>Coeficiente Idade  (X2): {{regressionResult.regressionX2 }}</h3>
+<h3>Coeficiente Comida (Y): {{ regressionResult.regressionY }}</h3>
+
+<h4> Peso (X1): {{ regressionResult.regressionX1 }} <strong>x</strong> <h2>{{ weightResponse }}</h2> <strong>+</strong> Idade (X2): {{regressionResult.regressionX2 }} <strong>x</strong> <h2>{{ birthDateMonth }}</h2> <strong>+</strong> Comida</h4>
+<h3>Peso dos ultimo mês:</h3>
+<h3>{{ petId$ | async }}<h3>
+
+

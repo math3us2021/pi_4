@@ -1,5 +1,5 @@
-<div class="card">
-  <div>
+<div *ngIf="filterPet === 'pets'" class="card">
+  <div  >
     <mat-card>
       <div class="card-header">
         <mat-card-title>TOTAL DE PETS</mat-card-title>
@@ -78,12 +78,18 @@
     </mat-card>
   </div>
 </div>
-<div class="display card-body">
-  <h2>CACHORROS | titulo personalizado</h2>
 
+
+
+<app-dog *ngIf="filterPet === 'dog'" ></app-dog>
+
+
+
+<div
+*ngIf="filterPet === 'cat'"
+class="card-body display">
+  <h2>GATOS</h2>
   <div class="card">
-    <!-- <button (click)="updateBarraDog()">Atualizei</button> -->
-
 
 
     <div>
@@ -126,31 +132,6 @@
         </mat-card-content>
       </mat-card>
     </div>
-
-    <div>
-      <mat-card>
-        <div class="card-header">
-          <mat-card-title>TOTAL DE CACHORROS</mat-card-title>
-          <mat-icon
-            aria-hidden="false"
-            aria-label="Example home icon"
-            fontIcon="pets"
-          ></mat-icon>
-        </div>
-        <mat-card-content>
-          <canvas id="bar">
-            {{ chartBarra }}
-          </canvas>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </div>
-</div>
-
-<div class="card-body display">
-  <h2>GATOS</h2>
-
-  <div class="card">
     <div>
       <mat-card>
         <div class="card-header">
@@ -168,46 +149,7 @@
         </mat-card-content>
       </mat-card>
     </div>
-
-    <div>
-      <mat-card>
-        <div class="card-header">
-          <mat-card-title>Quantidade de ração</mat-card-title>
-          <mat-icon
-            aria-hidden="false"
-            aria-label="Example home icon"
-            fontIcon="pets"
-          ></mat-icon>
-        </div>
-        <mat-card-subtitle>Estatistica Descritiva</mat-card-subtitle>
-        <mat-card-content>
-          <p>Média : {{ meanResponse }}</p>
-          <p>Mediana : {{ medianResponse }}</p>
-          <p>Moda : {{ modeResponse }}</p>
-          <p>Desvio Padrão : {{ stdeviationResponse }}</p>
-        </mat-card-content>
-      </mat-card>
-    </div>
-
-    <div>
-      <mat-card>
-        <div class="card-header">
-          <mat-card-title>Peso dos Cachorros</mat-card-title>
-          <mat-icon
-            aria-hidden="false"
-            aria-label="Example home icon"
-            fontIcon="pets"
-          ></mat-icon>
-        </div>
-        <mat-card-subtitle>Estatistica Descritiva</mat-card-subtitle>
-
-        <mat-card-content>
-          <p>Média : {{ staticFood.meanResponse }}</p>
-          <p>Mediana : {{ staticFood.modeResponse }}</p>
-          <p>Moda : {{ staticFood.medianResponse }}</p>
-          <p>Desvio Padrão : {{ staticFood.stdeviationResponse }}</p>
-        </mat-card-content>
-      </mat-card>
-    </div>
   </div>
 </div>
+
+

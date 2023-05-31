@@ -10,20 +10,12 @@ import { Regulations } from '../../model/home';
 })
 export class CardHoursComponent implements OnInit{
   dateCurrent = new Date();
-  checked = false;
+  checked = true;
   dates: Regulations[] = [];
-  // dates: Regulations[] = [
-  //   {
-  //     id: 1,
-  //     hourStart: '08:00',
-  //     quantityGrams: 100,
-  //   },
-  //   {
-  //     id: 2,
-  //     hourStart: '12:00',
-  //     quantityGrams: 100,
-  //   }
-  // ]
+  foods = [
+
+  ]
+
   constructor(
     private homeService: HomeService,
   ) { }
@@ -34,6 +26,7 @@ export class CardHoursComponent implements OnInit{
         this.dates = data;
       }
     );
+    this.homeService.getFood().subscribe()
   }
 
 

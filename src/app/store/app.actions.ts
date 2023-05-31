@@ -3,8 +3,8 @@ import { IProduct } from "./app.reduce";
 
 
 export const sucess = createAction('SUCESS',
-props<{payload: number}>())
-export const error = createAction('ERROR', props<{payload: number}>());
+  props<{ payload: number }>())
+export const error = createAction('ERROR', props<{ payload: number }>());
 
 // export const decrementCount = createAction('DECREMENT_COUNT',
 // )
@@ -12,8 +12,8 @@ export const error = createAction('ERROR', props<{payload: number}>());
 // props<{payload: number}>()
 // )
 
-// export const setProduct = createAction('SET_PRODUCTS',
-//     props<{ payload: IProduct[] }>()
-//     )
+export const setId = createAction('SET_ID',
+  props<{ value: string }>()
+)
 // export const loadProduct = createAction('LOAD_PRODUCTS')
 // export const sucessoProduct = createAction('SUCESS_PRODUCTS')

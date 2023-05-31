@@ -40,8 +40,8 @@ export class GraphicComponent {
     this.statisticServices.getAllPet().subscribe((data) => {
       console.log("age",data)
       this.coinPrice = data.map((item) => {
-        console.log("age",item.age)
-        return item.age
+        // console.log("age",item.age)
+        return item
       })
     })
     this.coinName = 'Bitcoin';

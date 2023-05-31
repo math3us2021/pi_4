@@ -6,6 +6,7 @@ import { Food, Pet } from '../model/statistic';
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/store/app.reduce';
 import {FormGroup, FormControl} from '@angular/forms';
+import { setId } from 'src/app/store/app.actions';
 interface Foods {
   value: string;
   viewValue: string;
@@ -17,20 +18,14 @@ interface Foods {
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent {
-  // @ViewChild('myDatepicker') myDatepicker!: MatDatepicker<Date>;
   selectedDate!: Date;
-  // suces!: number;
-  // erro!: number;
   @Output() sucess = 10;
-  // public chart: any;
+
   public bsConfig: Partial<BsDatepickerConfig> = {
     containerClass: 'theme-dark-blue',
     useUtc: true,
     rangeInputFormat: 'DD/MM/YYYY'
   };
-
-  // char: boolean = false;
-  // teste = '';
   selected = 'pets';
   selectedValue!: string;
   selectedFood!: string;
@@ -68,6 +63,12 @@ export class ChartComponent {
     console.log(this.selectedFood);
   }
 
+  onSelectionChangeFood(event: string) {
+    this.store.dispatch(setId({value: event}))
+    console.log("🚀 ~ file: chart.component.ts:72 ~ ChartComponent ~ onSelectionChangeFood ~ event:", event)
+
+  }
+
   onSelectionChange(event: string) {
 
     switch (this.selected) {
@@ -83,7 +84,9 @@ export class ChartComponent {
 }
 
   getDogs(){
-    this.statisticServices.getAllPet('dog').subscribe((data) => {
+    this.statisticServices.getAllPet({
+      params: 'dog'
+    }).subscribe((data) => {
       this.filterCat = false;
       this.dogs = data;
       this.filterDog = true;
@@ -92,7 +95,7 @@ export class ChartComponent {
   }
 
   getCat(){
-    this.statisticServices.getAllPet('cat').subscribe((data) => {
+    this.statisticServices.getAllPet({params: 'cat'}).subscribe((data) => {
       this.filterDog = false;
       this.cats = data;
       this.filterCat = true;

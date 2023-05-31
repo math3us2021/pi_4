@@ -12,17 +12,21 @@ import { ModalModule } from 'ngx-bootstrap/modal'
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
+import { ReminderHoursComponent } from './component/reminder-hours/reminder-hours.component';
+
 @NgModule({
   declarations: [
     HomeComponent,
     CardComponent,
     CardHoursComponent,
-    ModalComponent
+    ModalComponent,
+    ReminderHoursComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +41,7 @@ import {MatSelectModule} from '@angular/material/select';
     BsDatepickerModule.forRoot(),
     BsDropdownModule.forRoot(),
     AlertModule.forRoot(),
-
+    TimepickerModule.forRoot(),
   ]
 })
 export class HomeModule { }

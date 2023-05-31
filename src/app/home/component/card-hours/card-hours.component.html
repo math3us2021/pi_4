@@ -3,13 +3,14 @@
     <h3>Registro do dia:</h3>
     <h4>{{ dateCurrent | date: 'dd/MM/YYYY' }}</h4>
   </div>
-  <div class="card" *ngFor="let date of dates">
+  <div class="card" *ngFor="let date of dates; let i = index">
     <div class="hour">
-      <p>{{ date.hourStart }}</p>
-      <p>{{ date.quantityGrams }}</p>
+      <p>Horário: {{ date.hourStart }} h</p>
+      <p>Quantidade de ração: {{ date.quantityGrams }}g</p>
     </div>
     <div>
-      <mat-checkbox class="example-margin" [(ngModel)]="checked">Alimentação do dia</mat-checkbox>
+      <mat-checkbox class="example-margin" [ngModel]="foods[i] " color="primary"
+      disabled="true">Alimentação do dia</mat-checkbox>
     </div>
   </div>
 </div>

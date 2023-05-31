@@ -25,7 +25,7 @@
     <div *ngIf="filterDog">
       <mat-form-field appearance="fill">
         <mat-label>Consulta por Pet</mat-label>
-        <mat-select [(ngModel)]="selectedFood">
+        <mat-select [(ngModel)]="selectedFood"  (selectionChange)="onSelectionChangeFood($event.value)">
           <mat-option *ngFor="let dog of dogs" [value]="dog.id">
             {{ dog.name }}
           </mat-option>
@@ -56,7 +56,9 @@
   </div>
 </div>
 
-<app-card-total></app-card-total>
+<app-card-total
+  [filterPet]="selected"
+></app-card-total>
 
 <div class="container">
   <!-- <app-graphic *ngIf="char" [sucess]="suces" [error]="erro"></app-graphic> -->

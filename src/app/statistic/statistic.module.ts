@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { ChartComponent } from './chart/chart.component';
+import { ChartComponent } from './container/chart.component';
 import { StatisticRouterModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
@@ -16,13 +16,15 @@ import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { DogComponent } from './components/dog/dog.component';
 
 
 @NgModule({
   declarations: [
     ChartComponent,
     GraphicComponent,
-    CardTotalComponent
+    CardTotalComponent,
+    DogComponent
 
   ],
   imports: [

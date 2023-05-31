@@ -1,5 +1,11 @@
 export interface Regulations {
-    id: number;
+    id?: number;
     hourStart: string;
     quantityGrams: number;
 }
+export interface Interval {
+  value: string;
+  viewValue: string;
+}
+
+///

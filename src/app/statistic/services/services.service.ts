@@ -1,22 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, filter, map } from 'rxjs';
-import { Food, Pet, PetTotal } from '../model/statistic';
+import { Food, Pet, PetParams, PetTotal, WeightMonth } from '../model/statistic';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StatisticService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getAllPet(type?: string): Observable<Pet[]> {
+  getAllPet(item?: PetParams): Observable<Pet[]> {
     let params = {};
-    if (type) {
-      params = { type: type };
+    if (item?.params) {
+      params = { type: item.params };
     }
-    return this.http.get<Pet[]>('http://localhost:3001/pet', {
-      params: { ...params },
-    });
+    if (item?.id) {
+      return this.http.get<Pet[]>(`http://localhost:3001/pet/${item.id}`);
+    } else {
+      return this.http.get<Pet[]>('http://localhost:3001/pet', {
+        params: { ...params },
+      });
+    }
   }
 
   getAllFoot(): Observable<Food[]> {
@@ -41,5 +45,9 @@ export class StatisticService {
   }
   getCatTotal(): Observable<PetTotal[]> {
     return this.http.get<PetTotal[]>('http://localhost:3001/catTotal');
+  }
+
+  getWeigthMonth(): Observable<WeightMonth[]> {
+    return this.http.get<WeightMonth[]>('http://localhost:3001/weightMonth');
   }
 }
