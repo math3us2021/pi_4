@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, Output} from '@angular/core';
 import { StatisticService } from '../services/services.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
@@ -21,6 +22,7 @@ export class ChartComponent {
   selectedDate!: Date;
   @Output() sucess = 10;
 
+  public petInfo?: Pet;
   public bsConfig: Partial<BsDatepickerConfig> = {
     containerClass: 'theme-dark-blue',
     useUtc: true,
@@ -28,7 +30,7 @@ export class ChartComponent {
   };
   selected = 'pets';
   selectedValue!: string;
-  selectedFood!: string;
+  // valuePet!: string;
 
   dogs: Pet[] = [];
   cats: Pet[] = [];
@@ -50,24 +52,25 @@ export class ChartComponent {
   constructor(
     private statisticServices : StatisticService,
     private store: Store<{app: IAppState}>,
+    private route: Router
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getDogs();
+    this.getCat();
+  }
 
   getFood(){
-    console.log(this.selected);
-    console.log(this.selectedValue);
-    console.log(this.selectedFood);
-  }
-  onFoodSelectionChange() {
-    console.log(this.selectedFood);
+    console.log(this.petInfo?.id);
+    this.route.navigate([`/statistics/dog/${this.petInfo?.id}`])
   }
 
-  onSelectionChangeFood(event: string) {
-    this.store.dispatch(setId({value: event}))
-    console.log("🚀 ~ file: chart.component.ts:72 ~ ChartComponent ~ onSelectionChangeFood ~ event:", event)
 
-  }
+  // onSelectionChangeFood(event: Pet) {
+  //   console.log("🚀 ~ file: chart.component.ts:71 ~ ChartComponent ~ onSelectionChangeFood ~ event:", event)
+  //   this.petInfo = event;
+  //   this.store.dispatch(setId({value: event}))
+  // }
 
   onSelectionChange(event: string) {
 

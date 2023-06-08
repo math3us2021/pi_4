@@ -17,6 +17,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { DogComponent } from './components/dog/dog.component';
+import {MatButtonModule} from '@angular/material/button';
+
 
 
 @NgModule({
@@ -35,17 +37,15 @@ import { DogComponent } from './components/dog/dog.component';
     BsDatepickerModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    // BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
     MatCardModule,
     MatSelectModule,
     MatDatepickerModule,
     MatIconModule,
-    // MatNativeDateModule
+    MatButtonModule,
   ],
   providers: [
-    // {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
-    // { provide: DateAdapter, useClass: NativeDateAdapter, deps: [MAT_DATE_LOCALE] },
+    
   ],
 })
 export class StatisticModule { }

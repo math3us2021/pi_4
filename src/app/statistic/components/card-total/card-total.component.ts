@@ -26,7 +26,8 @@ import { calcularRegressaoMultiple } from 'src/app/utils/regression';
 })
 export class CardTotalComponent implements OnChanges {
   @Input() filterPet: string = '';
-
+  @Input() petId?: Pet;
+  appDog: boolean = false;
   ////////statistic Peso
   staticFood: Static = {
     meanResponse: 0,
@@ -92,7 +93,6 @@ export class CardTotalComponent implements OnChanges {
 
   ngOnInit(): void {
     this.regression();
-    console.log(this.filterPet);
     this.statisticServices.getAllPet().subscribe((data) => {
       this.petTotal = data.length;
       data.map((item) => {
@@ -112,7 +112,10 @@ export class CardTotalComponent implements OnChanges {
       this.modeCard.dog = this.maxArray(data);
       this.barraDog(data);
     });
+    this.statisticServices.getWeigthMonth(this.petId?.id).subscribe((data) => {
+      this.lineDogWeight(data);
 
+    });
     this.statisticServices.getCatTotal().subscribe((data) => {
       this.catBreed = data;
       this.modeCard.cat = this.maxArray(data);
@@ -181,11 +184,9 @@ export class CardTotalComponent implements OnChanges {
     this.chartPizza = new Chart('pie', {
       type: 'pie',
       data: {
-        // labels: ['Cachorro', 'Gato'],
         datasets: [
           {
             label: 'this.chartPizzaTotal',
-            // data: [this.cat.length, this.dog.length],
             data: [cat, dog],
             backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 13)'],
 
@@ -197,10 +198,7 @@ export class CardTotalComponent implements OnChanges {
   }
 
   binomialSucess(sucess: number, error: number) {
-    console.log(
-      '🚀 ~ file: card-total.component.ts:160 ~ CardTotalComponent ~ binomialSucess ~ sucess:',
-      sucess
-    );
+
 
     this.chartBinomial = new Chart('binomial', {
       type: 'pie',
@@ -283,10 +281,7 @@ export class CardTotalComponent implements OnChanges {
   }
 
   barraDog(petTotal: PetTotal[]) {
-    console.log(
-      '🚀 ~ file: card-total.component.ts:114 ~ CardTotalComponent ~ barra ~ petTotal:',
-      petTotal
-    );
+
 
     this.chartBarra = new Chart('bar', {
       type: 'bar',
@@ -352,15 +347,13 @@ export class CardTotalComponent implements OnChanges {
       return coefficients[0] + coefficients[1] * x1 + coefficients[2] * x2;
     };
 
-    console.log(regressao(2, 4)); // 5.000000000000001
+    // console.log(regressao(2, 4)); // 5.000000000000001
 
-    // Imprimindo os resultados
-    console.log('Coeficiente de intercepto:', coefficients[0]);
-    console.log('Coeficiente de x1:', coefficients[1]);
-    console.log('Coeficiente de x2:', coefficients[2]);
-    // console.log('Coeficiente de determinação (R²):', rSquared);
-
-
-
+    // // Imprimindo os resultados
+    // console.log('Coeficiente de intercepto:', coefficients[0]);
+    // console.log('Coeficiente de x1:', coefficients[1]);
+    // console.log('Coeficiente de x2:', coefficients[2]);
+    // console.log('Coeficiente de determinação (R²):', rSquared)
   }
+
 }

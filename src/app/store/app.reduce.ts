@@ -1,5 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { error, sucess, setId } from "./app.actions";
+import { Pet } from "../statistic/model/statistic";
 
 export interface IProduct {
     id: number;
@@ -12,14 +13,20 @@ export interface IAppState { /// definira interface para o estado da aplicação
     sucess: number;
     error: number
     products: IProduct[];
-    consultpetId: string;
+    consultpetId: Pet;
 }
 
 export const INITIAL_STATE: IAppState = { // define o estado inicial da aplicação
     sucess: 0,
     error: 0,
     products: [],
-    consultpetId: ''
+    consultpetId: {
+        id: '',
+        name: '',
+        type: '',
+        breed: '',
+        birthdate: '',
+    }
 }
 
 export const appReducer = createReducer(

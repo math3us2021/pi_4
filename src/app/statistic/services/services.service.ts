@@ -10,6 +10,7 @@ export class StatisticService {
   constructor(private http: HttpClient) { }
 
   getAllPet(item?: PetParams): Observable<Pet[]> {
+    console.log("🚀 ~ file: services.service.ts:13 ~ StatisticService ~ getAllPet ~ item:", item)
     let params = {};
     if (item?.params) {
       params = { type: item.params };
@@ -27,14 +28,18 @@ export class StatisticService {
     return this.http.get<Food[]>('http://localhost:3001/food', {});
   }
 
-  getFood(startDate?: string, endDate?: string): Observable<Food[]> {
+  getFood(petId?:string): Observable<Food[]> {
     let params = {};
-    if (startDate && endDate) {
-      params = {
-        dateAliment_gte: startDate,
-        dateAliment_lte: endDate,
-      };
+    if (petId) {
+      params = { petId: petId };
     }
+    // if (startDate && endDate) {
+    //   params = {
+    //     dateAliment_gte: startDate,
+    //     dateAliment_lte: endDate,
+    //   };
+    // }
+
     return this.http.get<Food[]>('http://localhost:3001/food', {
       params: { ...params },
     });
@@ -47,7 +52,11 @@ export class StatisticService {
     return this.http.get<PetTotal[]>('http://localhost:3001/catTotal');
   }
 
-  getWeigthMonth(): Observable<WeightMonth[]> {
+  getWeigthMonth(id?:string): Observable<WeightMonth[]> {
+    if (id) {
+      console.log("entrei no getID")
+      return this.http.get<WeightMonth[]>(`http://localhost:3001/weightMonth/${id}`);
+    }
     return this.http.get<WeightMonth[]>('http://localhost:3001/weightMonth');
   }
 }

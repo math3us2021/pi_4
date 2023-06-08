@@ -27,7 +27,7 @@ export interface Pet {
   name: string;
   type: string;
   breed: string;
-  birthdate: string;
+  birthdate?: string;
 }
 
 export interface Static {
@@ -50,7 +50,9 @@ export interface WeightMonth {
   id: string;
   weight: number;
   width: number;
+  age: number;
   height: number;
+  foodMonth: number;
   date: string;
 }
 
