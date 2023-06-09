@@ -1,13 +1,11 @@
-import { Food, data } from './../../model/statistic';
-import { appReducer } from './../../../store/app.reduce';
+import { Food } from '../../model/statistic';
 import { Component, Input } from '@angular/core';
 import { calcularRegressao } from 'src/app/utils/regres';
 import { StatisticService } from '../../services/services.service';
-import { differenceInMonths } from 'date-fns';
 import { Store, select } from '@ngrx/store';
 import { IAppState } from 'src/app/store/app.reduce';
 import { Observable } from 'rxjs';
-import { Pet, PetTotal, Static, WeightMonth } from '../../model/statistic';
+import { Pet, Static, WeightMonth } from '../../model/statistic';
 import { Chart, registerables } from 'chart.js';
 import {
   mean,
