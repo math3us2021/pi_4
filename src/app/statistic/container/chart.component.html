@@ -3,13 +3,7 @@
     <img src="assets/image/logo_pet.png" alt="Logo" class="imgSize" />
   </div>
 
-  <!-- <div class="header">
-    <h1><strong>DASHBOARD</strong></h1>
-    <button class="btn btn-warning" (click)="getFood()">Gerar Dados</button>
-  </div> -->
-
   <div class="filter">
-
     <mat-form-field appearance="fill">
       <mat-label>Espécie</mat-label>
       <mat-select [(value)]="selected" (selectionChange)="onSelectionChange($event.value)">
@@ -22,7 +16,6 @@
     <div *ngIf="filterDog">
       <mat-form-field appearance="fill">
         <mat-label>Consulta por Pet</mat-label>
-        <!-- <mat-select [(ngModel)]="selectedFood"  (selectionChange)="onSelectionChangeFood($event.value)"> -->
         <mat-select [(ngModel)]="petInfo">
           <mat-option *ngFor="let dog of dogs" [value]="dog">
             {{ dog.name }}
@@ -31,18 +24,6 @@
       </mat-form-field>
     </div>
 
-    <!-- <div *ngIf="filterCat">
-      <mat-form-field appearance="fill">
-        <mat-label>Consulta por Pet</mat-label>
-        <mat-select [(ngModel)]="selectedFood">
-          <mat-option *ngFor="let cat of cats" [value]="cat.id">
-            {{ cat.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div> -->
-
-    <!-- <button *ngIf="selectedFood" type="button" >Gerar Dados</button> -->
     <button *ngIf="petInfo" mat-raised-button color="primary" type="button" class="sizeInput" (click)="getFood()">Gerar Dados</button>
 
 

@@ -1,10 +1,10 @@
 import { Food } from '../../model/statistic';
-import { Component, Input } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { calcularRegressao } from 'src/app/utils/regres';
 import { StatisticService } from '../../services/services.service';
 import { Store, select } from '@ngrx/store';
 import { IAppState } from 'src/app/store/app.reduce';
-import { Observable } from 'rxjs';
+import {Observable, tap} from 'rxjs';
 import { Pet, Static, WeightMonth } from '../../model/statistic';
 import { Chart, registerables } from 'chart.js';
 import {
@@ -13,18 +13,21 @@ import {
   mode,
   standardDeviation,
 } from 'simple-statistics';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-dog',
   templateUrl: './dog.component.html',
   styleUrls: ['./dog.component.css']
 })
-export class DogComponent {
-  @Input() petId?: Pet;
+export class DogComponent implements OnInit{
+  @Input() petId!: Pet;
+  petName: string = '';
   public weightMonth: WeightMonth[] = [];
 
+  monthCurrent = new Date().setMonth(new Date().getMonth() + 1);
   regressionResponse: number = 0;
-  weightResponse: number[] = [];
+  weightResponse!: number;
   birthDateMonth: number = 0;
 
   regressionResult = {
@@ -33,7 +36,7 @@ export class DogComponent {
     regressionY: 0
   }
   petId$?: Observable<Pet>;
-
+  buttonRegression = false;
 
   ////////statistic Peso
   weightPetStatistic: Static = {
@@ -60,39 +63,67 @@ export class DogComponent {
   chartLineDogWeight: any;
 
   ngOnInit(): void {
-    this.differenceInMonths();
+    this.getPetId();
+    console.log(".......petName ", this.petName)
     this.getWeightMonth();
     this.getFood();
-
   }
 
   constructor(
     private serviceStatistic: StatisticService,
     private store: Store<{ app: IAppState }>,
+    private route: ActivatedRoute
 
   ) {
     Chart.register(...registerables);
-    this.petId$ = this.store.pipe(select((state) => state.app.consultpetId))
+    // this.petId$ = this.store.pipe(select((state) => state.app.consultpetId));
+
   }
 
-  differenceInMonths() {
-    this.petId$ = this.store.pipe(
-      select((state) => state.app.consultpetId)
-    )
+  getPetId() {
+    const id = this.route.snapshot.paramMap.get('id');
+
+    this.serviceStatistic.getAllPet({ id: id as string}).pipe(
+      tap((data) => {
+        data.map((item) => {
+          this.petName = item.name;
+        })
+
+      })
+    ).subscribe((data) => {
+      console.log("=>(dog.component.ts:87) data", data);
+
+    });
   }
 
-  regression() {
-
-    // const x1 = this.weightMonth.map((item) => item.weight);
-    // const x2 = this.weightMonth.map((item) => item.age);
-    // const y = this.weightMonth.map((item) => item.foodMonth);
-
-    const x1: number[] = [1, 2, 3, 4, 5]; //peso do pet
-    const x2: number[] = [2, 4, 5, 4, 5]; //idade do pet
-    const y: number[] = [3, 5, 6, 6, 7]; //qtd de comida
 
 
+    // this.petId$ = this.store.pipe(
+    //   select((state) => state.app.consultpetId),
+    //   tap((data) => {
+    //     this.serviceStatistic.getAllPet(
+    //       { id: data?.id }
+    //     ).subscribe((data) => {
+    //
+    //     });
+    //   })
+    // );
+
+
+
+  regression(data: WeightMonth[]){
+    console.log("regression ...",data)
+    const x1 = this.weightMonth.map((item) => item.weight);
+    console.log("=>(dog.component.ts:87) x1", x1);
+    const x2 = this.weightMonth.map((item) => item.age);
+    const y = this.weightMonth.map((item) => item.foodMonth / 1000);
+
+    // const x1: number[] = [1, 2, 3, 4, 5]; //peso do pet
+    // const x2: number[] = [2, 4, 5, 4, 5]; //idade do pet
+    // const y: number[] = [3, 5, 6, 6, 7]; //qtd de comida
     // const { coefficients, rSquared } = calcularRegressaoMultiple(x1, x2, y);
+
+
     const coefficients = calcularRegressao(x1, x2, y);
     this.regressionResult.regressionY = coefficients[0]
     this.regressionResult.regressionX1 = coefficients[1]
@@ -102,24 +133,17 @@ export class DogComponent {
     const regressao = (x1: number, x2: number) => {
       return coefficients[0] + coefficients[1] * x1 + coefficients[2] * x2;
     };
-    this.regressionResponse = regressao(2, this.birthDateMonth);
-    // console.log(regressao(2, 4)); // 5.000000000000001
-
-    // // Imprimindo os resultados
-    // console.log('Coeficiente de intercepto:', coefficients[0]);
-    // console.log('Coeficiente de x1:', coefficients[1]);
-    // console.log('Coeficiente de x2:', coefficients[2]);
-    // console.log('Coeficiente de determinação (R²):', rSquared);
-
+    this.regressionResponse = regressao( this.weightResponse, this.birthDateMonth);
   }
 
   getWeightMonth() {
     this.serviceStatistic.getWeigthMonth(this.petId?.id).subscribe((data) => {
       this.weightMonth = data;
-      this.regression();
-
+      this.birthDateMonth = data.slice(-1)[0].age;
+      this.weightResponse = data.slice(-1)[0].weight;
       this.lineDogWeight(data);
       this.lineDog(data);
+      this.regression(data);
       this.weightPetStatistic.meanResponse = mean(data.map((item) => item.weight));
       this.weightPetStatistic.modeResponse = mode(data.map((item) => item.weight));
       this.weightPetStatistic.medianResponse = median(data.map((item) => item.weight));
@@ -217,5 +241,9 @@ export class DogComponent {
     const res = (value / total) * 100;
     const result = `` + res.toFixed() + `%`;
     return result;
+  }
+
+  calcRegression() {
+    this.buttonRegression = !this.buttonRegression;
   }
 }

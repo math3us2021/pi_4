@@ -1,17 +1,10 @@
 import { Router } from '@angular/router';
 import { Component, Output} from '@angular/core';
 import { StatisticService } from '../services/services.service';
-import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Food, Pet } from '../model/statistic';
-
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/store/app.reduce';
 import {FormGroup, FormControl} from '@angular/forms';
-import { setId } from 'src/app/store/app.actions';
-interface Foods {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-chart',
@@ -19,18 +12,10 @@ interface Foods {
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent {
-  selectedDate!: Date;
   @Output() sucess = 10;
 
   public petInfo?: Pet;
-  public bsConfig: Partial<BsDatepickerConfig> = {
-    containerClass: 'theme-dark-blue',
-    useUtc: true,
-    rangeInputFormat: 'DD/MM/YYYY'
-  };
   selected = 'pets';
-  selectedValue!: string;
-  // valuePet!: string;
 
   dogs: Pet[] = [];
   cats: Pet[] = [];
@@ -40,9 +25,6 @@ export class ChartComponent {
     end: new FormControl<Date | null>(null),
   });
 
-  start = '';
-  end = '';
-  dataStatistic: Food[] = []
 
   pet: Food[] = [];
   dog: Food[] = [];
@@ -65,12 +47,6 @@ export class ChartComponent {
     this.route.navigate([`/statistics/dog/${this.petInfo?.id}`])
   }
 
-
-  // onSelectionChangeFood(event: Pet) {
-  //   console.log("🚀 ~ file: chart.component.ts:71 ~ ChartComponent ~ onSelectionChangeFood ~ event:", event)
-  //   this.petInfo = event;
-  //   this.store.dispatch(setId({value: event}))
-  // }
 
   onSelectionChange(event: string) {
 
